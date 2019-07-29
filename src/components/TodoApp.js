@@ -7,19 +7,26 @@ export default class extends Component{
         super(props)
         this.state = {
             tabIndex:1,
-            tasks:[],
+            tasks:[
+            ]
         }
     }
 
     addTask = (inputText) => {
         const stateText = this.state.tasks.slice()
-        stateText.push(inputText)
+        const id = stateText.length
+        const inputStatus = {
+            text:inputText,
+            check:false,
+            id:id
+        }
+        stateText.push(inputStatus)
         this.setState({tasks:stateText})
+        
     }
 
     resetTask = () => {
         this.setState({tasks:[]})
-        this.setState({checkbox:[]})
     }
 
     tabChange = (index) => {
@@ -27,7 +34,9 @@ export default class extends Component{
     }
 
     check = (target) => {
-        console.log(target.checked);
+        const stateCopy = this.state.tasks.slice()
+        stateCopy[target.dataset.num].check = target.checked
+        this.setState({tasks:stateCopy})
     }
 
     render(){
