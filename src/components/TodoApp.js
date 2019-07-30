@@ -1,14 +1,15 @@
 import React ,{Component} from 'react'
 import TodoList from './TodoList'
 import TodoForm from './TodoForm'
+import {inputTask,addTask} from '../actions/tasks'
 
 export default class extends Component{
     constructor(props){
         super(props)
+        this.store = props.store
         this.state = {
             tabIndex:1,
-            tasks:[
-            ]
+            tasks:[]
         }
     }
 
@@ -18,7 +19,6 @@ export default class extends Component{
         const inputStatus = {
             text:inputText,
             check:false,
-            id:id
         }
         stateText.push(inputStatus)
         this.setState({tasks:stateText})
@@ -40,6 +40,7 @@ export default class extends Component{
     }
 
     render(){
+        console.log(this.store)
         let title = "TodoList"
         if(this.state.tabIndex === 2){
             title = "Yet"
