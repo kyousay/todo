@@ -6,7 +6,12 @@
 
  const store = createStore(tasksReducer)
 
-ReactDOM.render(
-    <TodoApp store={store}/>,
-    document.getElementById('root')
-)
+function renderApp(store){
+    ReactDOM.render(
+        <TodoApp store={store}/>,
+        document.getElementById('root')
+    )
+}
+
+store.subscribe(() => renderApp(store))
+renderApp(store)

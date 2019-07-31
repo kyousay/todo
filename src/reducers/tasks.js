@@ -14,12 +14,26 @@ export function tasksReducer(state = initialState, action){
         case 'ADD_TASK':
             return {
                 ...state,
-                tasks:state.tasks.concat([action.payload.task])
+                task:"",
+                tasks:state.tasks.concat([{tasks:action.payload.task,check:false}])
+            };
+        case "CHANGE_CHECK":
+            const taskCopy = state.tasks.slice();
+            taskCopy[action.payload.index].check = action.payload.check;
+            return {
+                ...state,
+                tasks:taskCopy
             };
         case 'TAB_CHANGE':
             return {
                 ...state,
-                tabIndex:""
+                tabIndex:action.payload.tabIndex
+            };
+        case 'RESET_TASK':
+            return {
+                tabIndex:1,
+                task:"",
+                tasks:[]
             }
         default:
             return state;

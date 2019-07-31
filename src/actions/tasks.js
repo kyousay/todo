@@ -11,3 +11,22 @@ export const addTask = (task) => ({
         task
     }
 })
+
+export const resetTask = () => ({
+    type:'RESET_TASK'
+})
+
+export const tabChange = (tabIndex) => ({
+    type:'TAB_CHANGE',
+    payload:{
+        tabIndex
+    }
+}) 
+
+export const changeCheck = (check,index) => ({
+    type:'CHANGE_CHECK',
+    payload:{
+        check,
+        index
+    }
+})
