@@ -1,14 +1,13 @@
 import React,{Component}from 'react'
-import { changeCheck } from '../actions/tasks';
 
 export default class extends Component{
     render(){
-        const {tabIndex,tasks} = this.props.store.getState()
-        let Component = <TodoListAll tasks={tasks} store={this.props.store} />
+        const {tabIndex} = this.props
+        let Component = <TodoListAll {...this.props} />
         if(tabIndex === 2){
-            Component = <TodoListYet tasks={tasks} store={this.props.store} />
+            Component = <TodoListYet {...this.props} />
         }else if(tabIndex === 3){
-            Component = <TodoListChecked tasks={tasks} store={this.props.store} />
+            Component = <TodoListChecked {...this.props} />
         }
         return(
             <div>
@@ -26,7 +25,7 @@ const TodoListAll = (props) => {
             {pop.map((task,index)  => {
                 return(
                     <div key={index}>
-                        <input type="checkbox" id={`check${index}`} defaultChecked={task.check} onChange={(event) => props.store.dispatch(changeCheck(event.target.checked,index))} />
+                        <input type="checkbox" id={`check${index}`} defaultChecked={task.check} onChange={(event) => props.changeCheck(event.target.checked,index)} />
                         <label htmlFor={`ckeck${index}`}>{task.tasks}</label>
                     </div>
                 )
@@ -43,7 +42,7 @@ const TodoListChecked = (props) => {
                 if(task.check){
                     return(
                     <div key={index}>
-                        <input type="checkbox" id={`check${index}`}  defaultChecked={task.check} onChange={(event) => props.store.dispatch(changeCheck(event.target.checked,index))} />
+                        <input type="checkbox" id={`check${index}`}  defaultChecked={task.check} onChange={(event) => props.changeCheck(event.target.checked,index)} />
                         <label htmlFor={`ckeck${index}`}>{task.tasks}</label>
                     </div>
                     )
@@ -65,7 +64,7 @@ const TodoListYet  = (props) => {
                 }else{
                     return(
                         <div key={index}>
-                            <input type="checkbox" id={`check${index}`} defaultChecked={task.check} onChange={(event) => props.store.dispatch(changeCheck(event.target.checked,index))} />
+                            <input type="checkbox" id={`check${index}`} defaultChecked={task.check} onChange={(event) => props.changeCheck(event.target.checked,index)} />
                             <label htmlFor={`ckeck${index}`}>{task.tasks}</label>
                         </div>
                     )
