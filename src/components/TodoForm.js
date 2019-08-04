@@ -1,8 +1,9 @@
 import React,{ Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class extends Component {
     render(){
-        const {task,inputTask,addTask,resetTask,tabChange} = this.props
+        const {task,inputTask,addTask,resetTask} = this.props
         return(
             <>
                 <form action="#" id="todo_form">
@@ -11,9 +12,9 @@ export default class extends Component {
                     <button className="todo_resetBtn" onClick={() => resetTask()}>reset...</button>
                 </form>
                 <div className="todoTab">
-                    <button className="todoTab__item" onClick={() => tabChange(1)}>all</button>
-                    <button className="todoTab__item" onClick={() => tabChange(2)}>yet</button>
-                    <button className="todoTab__item" onClick={() => tabChange(3)}>done</button>
+                    <Link to="/"><button className="todoTab__item">all</button></Link>
+                    <Link to="/yet"><button className="todoTab__item">yet</button></Link>
+                    <Link to="/done"><button className="todoTab__item">done</button></Link>
                 </div>
             </>
         )

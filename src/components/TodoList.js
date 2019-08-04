@@ -1,20 +1,14 @@
-import React,{Component}from 'react'
+import React from 'react'
+import { Switch,Route } from 'react-router-dom'
 
-export default class extends Component{
-    render(){
-        const {tabIndex} = this.props
-        let Component = <TodoListAll {...this.props} />
-        if(tabIndex === 2){
-            Component = <TodoListYet {...this.props} />
-        }else if(tabIndex === 3){
-            Component = <TodoListChecked {...this.props} />
-        }
-        return(
-            <div>
-                {Component}
-            </div>
-        )
-     }
+export default (props) => {
+    return(
+        <Switch>
+            <Route exact path="/" render={() => (<TodoListAll {...props} />)} />
+            <Route exact path="/yet" render={() => (<TodoListYet {...props} />)} />
+            <Route exact path="/done" render={() => (<TodoListChecked {...props} />)} />
+        </Switch>
+    )
 }
 
 

@@ -1,19 +1,18 @@
 import React from 'react'
 import TodoList from '../containers/TodoList'
 import TodoForm from '../containers/TodoForm'
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 
-export default ({tabIndex}) => {
-    let title = "TodoList"
-    if(tabIndex === 2){
-        title = "Yet"
-    }else if(tabIndex === 3){
-        title = "Done"
-    }
+export default () => {
     return(
-        <>
-            <h1 className="todo__title">{title}</h1>
+        <Router>
+            <Switch>
+                <Route exact path="/" render={() => (<h1 className="todo__title">TodoList</h1>)} />
+                <Route exact path="/yet" render={() => (<h1 className="todo__title">Yet</h1>)} />
+                <Route exact path="/done" render={() => (<h1 className="todo__title">Done</h1>)} />
+            </Switch>
             <TodoList />
             <TodoForm />
-        </>
+        </Router>
     )
 }
