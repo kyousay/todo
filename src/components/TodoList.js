@@ -24,7 +24,7 @@ const TodoListAll = (props) => {
                     </div>
                 )
              })}
-         </>
+        </>
      )
 }
 
@@ -49,21 +49,23 @@ const TodoListChecked = (props) => {
 }
 
 const TodoListYet  = (props) => {
-    const pop = props.tasks
+    const pop = props.tasks 
     return(
         <>
-            {pop.map((task,index)  => {
+            {
+            pop.map((task,index)  => {
                 if(task.check){
                     return ""
                 }else{
                     return(
-                        <div key={index}>
-                            <input type="checkbox" id={`check${index}`} defaultChecked={task.check} onChange={(event) => props.changeCheck(event.target.checked,index)} />
-                            <label htmlFor={`ckeck${index}`}>{task.tasks}</label>
+                        <div key= {index }>
+                            <input type="checkbox" id={`check${ index }`} defaultChecked={ task.check } onChange={(event) => props.changeCheck(event.target.checked,index)} />
+                            <label htmlFor={`ckeck${ index }`}>{ task.tasks }</label>
                         </div>
                     )
                 }
-             })}
+            })
+            }
          </>
      )
 }
